@@ -28,8 +28,8 @@ function addLog(str){
   if(!log_str){
     log_str = "";
   }
-  //log_str = log_str + pun + str;
-  log_str = log_str + str;
+  log_str = log_str + pun + str;
+  //log_str = log_str + str;
   localStorage.setItem("log", log_str);
   localStorage.setItem("slog", str);
   //document.getElementById("log").value = localStorage.getItem("log");
@@ -54,14 +54,15 @@ function rollButton(){
   var str = document.getElementById("roll_text").value;
 
   if(!d){d = 1}
-  if(!cm){cm = 10}
+  if(!cm){cm = 100}
   if(!t){t = 0}
 
   var radio = document.getElementsByName("roll_type");
   if(radio[0].checked){
     showJudge(rollJudge(d, cm, t, str));
   }else if(radio[1].checked){
-    showSum(rollSum(d, cm, t, str));
+    var ac = Number(document.getElementById("achval").value);
+    showSum(rollSum(d, cm, t, str, ac));
   }
 }
 
@@ -109,7 +110,7 @@ function showJudge(data){
   addLog(str);
 }
 
-function rollSum(d, m, t, str){
+function rollSum(d, m, t, str, ac){
   var data = [];
   data['data'] = [d, m, t];
   if(str == ""){
@@ -125,6 +126,23 @@ function rollSum(d, m, t, str){
   data['list'].forEach(d => data['dsum'] += d);
   data['res'] = data['dsum'] + t;
 
+  if(m == 100 && ac){
+
+    data['ac'] = ac;
+    data['acres'] = "test";
+
+    if(data['res'] <= ac){
+      data['acres'] = "成功";
+      if(data['res'] <=  5){
+        data['acres'] = "クリティカル";
+      }
+    }else{
+      data['acres'] = "失敗";
+      if(data['res'] > 95){
+        data['acres'] = "ファンブル";
+      }
+    }
+  }
   return data;
 }
 
@@ -136,6 +154,10 @@ function showSum(data){
     str += " + " + data['data'][2] + " = " + data['res'];
   }
   str += "\n"
+
+  if(data['ac']){
+    str += tab + data['acres'] + "（達成値：" + data['ac'] + "）\n";
+  }
   //str += data['ex'] + " = " + data['res'] + "\n";
   //str += tab + "[" + data['list'] + "]" + "\n";
   //str += tab + data['dsum'] + " + " + data['data'][2] + " = " + data['res'] + "\n";
