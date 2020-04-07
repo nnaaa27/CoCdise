@@ -332,6 +332,7 @@ nav ul{
     transform: rotate(135deg)
 }
 
+
 #nav-input:checked ~ #nav-open span:after {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
