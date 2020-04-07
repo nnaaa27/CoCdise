@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <title>CoC用ダイス</title>
+
+  <audio id="sound" preload="auto">
+    <!--source src="sound.mp3" type="audio/mp3"-->
+    <source src="se_dise.wav" type="audio/wav">
+  </audio>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width">
+
+</head>
+
+
+<body>
+  <header>
+  	<div id="nav-drawer">
+  		<input id="nav-input" type="checkbox" class="nav-unshown">
+  		<label id="nav-open" for="nav-input"><span></span></label>
+      <div id="menu">
+        <h1>MENU</h1>
+        <div id="menu-erotion-data" class="erotion-data">
+          <div id="menu-erotion-p" class="erotion-p">- %</div>
+          <ul id="menu-erotion-bonus" class="erotion-bonus">
+            <li>ダイス：</li>
+            <li>エフェクト：</li>
+          </ul>
+        </div>
+        <nav>
+          <ul>
+            <li class="button"><a href="index.html">ダイス</a></li>
+            <!--li class="button"><a href="erotion.html">侵蝕値</a></li-->
+            <li class="button"><a href="log.html">LOG</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+
+
+
+
+  <div class="main">
+    <h1>ダイス</h1>
+    <div class="list" name="dise_form">
+      <!--div class="group">
+
+          <input name="roll_type" type="radio" id="s1" value="1" onclick="diseRadio1()">
+          <label for="s1" class="radio-label button">行為判定</label>
+
+          <input name="roll_type" type="radio" id="s2" value="2" onclick="diseRadio2()" checked="">
+          <label for="s2" class="input-label button">合計</label>
+      </div-->
+      <div class="group col_3">
+        <div class="block">
+          <label>ダイス数</label><br>
+          <input id="roll" type="number" placeholder="1">
+        </div>
+        <div class="block">
+          <label id="cri_men_l">面の数</label><br>
+          <input id="cri_men" type="number" placeholder=10>
+        </div>
+        <div class="block">
+          <label>修正値</label><br>
+          <input id="add" type="number" placeholder="0">
+        </div>
+      </div>
+      <input id="roll_text" type="text" placeholder="備考">
+      <div class="group col_2">
+        <input type="button" value="判定" onclick="rollButton()">
+        <input type="button" value="クリア" onclick="clearRoll()">
+      </div>
+      <div class="show-area result" style="white-space: pre-line;"><p id="judge_res"></p></div>
+      <input type="button" id="button_c" value="コピー" onclick="copy_roll()">
+
+    </div>
+  </div>
+</body>
+
+</html>
